@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Checker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script type="module" src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="/check_email_list/ETHOS_SoloTab-RGB-logo.jpg" alt="Ethos Engineering Logo" class="logo">
+        <h1>Email Checker</h1>
+        <form id="upload-form">
+            <label for="pd-file-input">Upload Project Directory Excel:</label>
+            <input type="file" id="pd-file-input" accept=".xls,.xlsx,.xlsm">
+            <label for="pm-file-input">Upload Project Member Excel:</label>
+            <input type="file" id="pm-file-input" accept=".xls,.xlsx,.xlsm">
+        </form>
+        <div id="stats">
+            <p id="pd-count">Project Directory Emails: 0</p>
+            <p id="pm-count">Project Member Emails: 0</p>
+            <p id="match-count">Matching Emails: 0</p>
+        </div>
+        <table id="results-table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Job Title</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <h2>Missing Emails</h2>
+        <table id="missing-emails-table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Job Title</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <footer>
+        Web app developed by Rubens Lage and ChatGPT
+    </footer>
+</body>
+</html>

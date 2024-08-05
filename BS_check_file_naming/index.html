@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naming Convention Checker</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include the XLSX library for reading Excel files with SRI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" 
+    integrity="sha384-vtjasyidUo0kW94K5MXDXntzOJpQgBKXmE7e2Ga4LG0skTTLeBi97eFAXsqewJjw" 
+    crossorigin="anonymous"></script>
+    <script type="module" src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="ETHOS_SoloTab-RGB-logo.jpg" alt="Ethos Engineering Logo" class="logo">
+        <h1>Naming Convention Checker</h1>
+
+        <div class="form-and-download">
+            <div class="template-download">
+                <label>1st - Download Naming Convention Template</label>
+                <ul id="template-list">
+                    <li><a href="/Naming Convention Template.xlsx" download>Naming Convention Template.xlsx</a></li>
+                </ul>
+            </div>
+            <div class="upload-section">
+                <form id="upload-form">
+                    <label for="file-input">2nd - Upload Your Project Naming Convention:</label>
+                    <input type="file" id="file-input" accept=".xls,.xlsx,.xlsm">
+                </form>
+            </div>            
+        </div>
+
+        <button id="folder-select-button">3rd - Select Folder with Files to Check Naming Convention</button>
+        <table id="results-table">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Compliance Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="export-button">4th - Export Results</button>
+    </div>
+    <footer>
+        Web application developed by Rubens Lage and ChatGPT
+    </footer>
+</body>
+</html>
