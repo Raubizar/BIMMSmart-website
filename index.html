@@ -3,43 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Applications</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-        a {
-            text-decoration: none;
-            color: #0073e6;
-            font-size: 18px;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>BIMM Smart</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to My Web Applications</h1>
-    <ul>
-        <li><a href="https://filenamechecker.netlify.app/" target="_blank">Naming Convention Checker</a></li>
-    </ul>
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>Making You the Go-To BIM Expert</h1>
+            <p>Welcome to BIMM Smart—your go-to resource for becoming the smartest BIM professional in the room. Explore top articles, news, tutorials, and apps designed to help you excel at work.</p>
+            <form id="signup-form" onsubmit="return false;">
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <button type="submit" onclick="submitEmail()">Sign up to be up-to-date</button>
+            </form>
+        </div>
+        <div class="hero-image">
+            <img src="website-logo.png" alt="BIMM Smart Logo" class="logo">
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="feature-item">
+            <img src="I_want_it-removebg-preview.png" alt="I Want It Icon" class="feature-icon">
+            <h2>I Want It</h2>
+            <p>Ready-to-use solutions</p>
+        </div>
+        <div class="feature-item">
+            <img src="teach_me-removebg-preview.png" alt="Teach Me Icon" class="feature-icon">
+            <h2>Teach Me</h2>
+            <p>Step-by-step tutorials, articles, and events</p>
+        </div>
+        <div class="feature-item">
+            <img src="do_it_for_me-removebg-preview.png" alt="Do It for Me Icon" class="feature-icon">
+            <h2>Do It for Me</h2>
+            <p>Custom problem-solving, request a quote</p>
+        </div>
+    </section>
+
+    <script src="scripts.js"></script>
 </body>
 </html>

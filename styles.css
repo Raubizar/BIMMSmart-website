@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #ffffff;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #1b1b1b;
+    flex-grow: 1;
+}
+
+.hero-content {
+    max-width: 45%;
+    text-align: left;
+}
+
+.hero-content h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+#signup-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#email {
+    padding: 10px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    flex-grow: 1;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.hero-image {
+    max-width: 45%;
+    text-align: right;
+}
+
+.logo {
+    width: auto;
+    height: 300px; /* Adjust this value to resize the logo */
+    max-height: 100%;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 20px;
+    background-color: #282828;
+}
+
+.feature-item {
+    max-width: 28%;
+    padding: 10px;
+    background-color: #333333;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.feature-item h2 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.feature-item p {
+    font-size: 0.9rem;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-content {
+        max-width: 90%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .hero-image {
+        max-width: 90%;
+        text-align: center;
+    }
+
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-item {
+        max-width: 90%;
+        margin-bottom: 15px;
+    }
+
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
