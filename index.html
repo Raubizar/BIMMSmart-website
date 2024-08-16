@@ -7,13 +7,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="hero-section">
+    <!-- Top Menu -->
+    <nav class="top-menu">
+        <ul>
+            <li><a href="#top">Home</a></li>
+            <li><a href="#section-i-want-it">I Want It</a></li>
+            <li><a href="#section-teach-me">Teach Me</a></li>
+            <li><a href="#section-do-it-for-me">Do It for Me</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero-section" id="top">
         <div class="hero-content">
             <h1>Making You the Go-To BIM Expert</h1>
             <p>Welcome to BIMM Smart—your go-to resource for becoming the smartest BIM professional in the room. Explore top articles, news, tutorials, and apps designed to help you excel at work.</p>
-            <form id="signup-form" onsubmit="return false;">
-                <input type="email" id="email" placeholder="Enter your email" required>
-                <button type="submit" onclick="submitEmail()">Sign up to be up-to-date</button>
+            <form id="signup-form" action="mailto:contact@bimmsmart.com" method="post" enctype="text/plain">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Sign up to be up-to-date</button>
+                <input type="hidden" name="subject" value="I want to sign up to be up-to-date">
+                <input type="hidden" name="body" value="Hi, my name is _________; I would like to know more about and keep up-to-date with BIMM Smart content">
             </form>
         </div>
         <div class="hero-image">
@@ -22,21 +34,46 @@
     </header>
 
     <section class="features">
-        <div class="feature-item">
+        <a href="#section-i-want-it" class="feature-item" id="feature-i-want-it">
             <img src="I_want_it-removebg-preview.png" alt="I Want It Icon" class="feature-icon">
             <h2>I Want It</h2>
             <p>Ready-to-use solutions</p>
-        </div>
-        <div class="feature-item">
+        </a>
+        <a href="#section-teach-me" class="feature-item" id="feature-teach-me">
             <img src="teach_me-removebg-preview.png" alt="Teach Me Icon" class="feature-icon">
             <h2>Teach Me</h2>
             <p>Step-by-step tutorials, articles, and events</p>
-        </div>
-        <div class="feature-item">
+        </a>
+        <a href="#section-do-it-for-me" class="feature-item" id="feature-do-it-for-me">
             <img src="do_it_for_me-removebg-preview.png" alt="Do It for Me Icon" class="feature-icon">
             <h2>Do It for Me</h2>
             <p>Custom problem-solving, request a quote</p>
-        </div>
+        </a>
+    </section>
+
+    <!-- I Want It Section -->
+    <section class="feature-detail" id="section-i-want-it">
+        <h2>Ready-to-Use Solutions</h2>
+        <p>Download high-quality BIM models, templates, and tools that you can use immediately in your projects. Our content is designed to save you time and enhance your productivity.</p>
+        <img src="bim-content.png" alt="BIM Content Image" class="feature-image">
+        <a href="download/bim-content.zip" class="button" download>Download Now</a>
+    </section>
+
+    <!-- Teach Me Section -->
+    <section class="feature-detail" id="section-teach-me">
+        <h2>Learn with Our Tutorials</h2>
+        <p>Access step-by-step guides, in-depth articles, and live event recordings that will help you master BIM. Whether you're a beginner or an expert, our resources are tailored to elevate your skills.</p>
+        <a href="https://www.bimmsmart.com/tutorials" class="button">Start Learning</a>
+    </section>
+
+    <!-- Do It for Me Section -->
+    <section class="feature-detail" id="section-do-it-for-me">
+        <h2>Need Help? We’re Here for You</h2>
+        <p>If you need custom solutions or have a specific problem you want us to solve, just describe it in the box below, and we'll get back to you shortly.</p>
+        <form action="mailto:contact@bimmsmart.com" method="post" enctype="text/plain">
+            <textarea name="problem-description" placeholder="Describe your problem here..." rows="5" required></textarea>
+            <button type="submit">Send Request</button>
+        </form>
     </section>
 
     <script src="scripts.js"></script>

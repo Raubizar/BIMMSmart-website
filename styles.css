@@ -9,6 +9,49 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     min-height: 100vh;
+    scroll-behavior: smooth; /* Smooth scrolling effect */
+}
+
+/* Top Menu */
+.top-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #1b1b1b;
+    z-index: 1000;
+    padding: 10px 0;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.top-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.top-menu ul li {
+    display: inline;
+}
+
+.top-menu ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.top-menu ul li a:hover {
+    background-color: #007BFF;
+}
+
+/* Adjust spacing to account for the fixed top menu */
+.hero-section {
+    margin-top: 60px; /* Adjust according to the height of the top menu */
 }
 
 .hero-section {
@@ -74,18 +117,20 @@ button:hover {
 
 .logo {
     width: auto;
-    height: 250px; /* Adjusted for better fit */
+    height: 250px;
     max-height: 100%;
 }
 
 .features {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
     background-color: #282828;
     width: 100%;
     box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 15px; /* Add gap between items */
 }
 
 .feature-item {
@@ -93,9 +138,18 @@ button:hover {
     border-radius: 10px;
     text-align: center;
     padding: 20px;
-    margin: 15px 0;
-    width: 100%;
-    max-width: 150px; /* Reduced to 50% of original width */
+    width: calc(33.33% - 30px); /* Make items take up a third of the space, minus the gap */
+    min-width: 150px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: inherit; /* Inherit text color */
+    text-decoration: none; /* Remove text underline */
+    display: block; /* Ensure the entire box is clickable */
+}
+
+.feature-item:hover {
+    background-color: #007BFF;
 }
 
 .feature-item h2 {
@@ -115,34 +169,71 @@ button:hover {
     margin-bottom: 10px;
 }
 
-@media (min-width: 768px) {
-    .hero-section {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+.feature-detail {
+    padding: 40px 20px;
+    background-color: #1b1b1b;
+    margin: 20px 0;
+}
 
-    .hero-content {
-        text-align: left;
-    }
+.feature-detail h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
 
-    #signup-form {
-        flex-direction: row;
-        justify-content: flex-start;
-    }
+.feature-detail p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-    #email {
-        flex-grow: 1;
-        max-width: none;
-    }
+.feature-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+}
 
+.button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    resize: vertical;
+}
+
+@media (max-width: 768px) {
     .features {
-        flex-direction: row;
-        justify-content: space-around;
-        flex-wrap: wrap;
+        flex-direction: column;
     }
 
     .feature-item {
-        max-width: 22%;
-        margin: 15px;
+        width: 100%;
+        max-width: 300px;
+        margin: 10px auto;
+    }
+
+    .top-menu ul {
+        flex-direction: column;
     }
 }
