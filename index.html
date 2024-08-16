@@ -9,12 +9,20 @@
 <body>
     <!-- Top Menu -->
     <nav class="top-menu">
-        <ul>
-            <li><a href="#top">Home</a></li>
-            <li><a href="#section-i-want-it">I Want It</a></li>
-            <li><a href="#section-teach-me">Teach Me</a></li>
-            <li><a href="#section-do-it-for-me">Do It for Me</a></li>
-        </ul>
+        <div class="menu-content">
+            <a href="#top" class="menu-logo">
+                <img src="website-logo.png" alt="BIMM Smart Logo" class="small-logo">
+            </a>
+            <ul>
+                <li><a href="#top">Home</a></li>
+                <li><a href="#section-i-want-it">I Want It</a></li>
+                <li><a href="#section-teach-me">Teach Me</a></li>
+                <li><a href="#section-do-it-for-me">Do It for Me</a></li>
+                <li><a href="#section-contact">Contact</a></li>
+                <li><a href="#section-about">About</a></li>
+            </ul>
+            
+        </div>
     </nav>
 
     <header class="hero-section" id="top">
@@ -76,6 +84,27 @@
         </form>
     </section>
 
-    <script src="scripts.js"></script>
+    <!-- Contact Section -->
+    <section class="feature-detail" id="section-contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need further information, feel free to reach out to us at <strong>contact@bimmsmart.com</strong>.</p>
+        <button class="button" onclick="copyEmail()">Copy Email</button>
+    </section>
+
+    <!-- About Section -->
+    <section class="feature-detail" id="section-about">
+        <h2>About the Author</h2>
+        <p>BIMM Smart is created by an experienced BIM professional dedicated to sharing knowledge and providing tools to help others excel in their careers. With a passion for innovation and technology, the author aims to make BIM accessible and easy to learn for everyone.</p>
+    </section>
+
+    <script>
+        function copyEmail() {
+            navigator.clipboard.writeText('contact@bimmsmart.com').then(function() {
+                alert('Email copied to clipboard');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
