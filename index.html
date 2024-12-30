@@ -4,113 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIMM Smart</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
+    <script src="script.js" defer></script> <!-- Optional JS -->
 </head>
 <body>
-    <!-- Top Menu -->
-    <nav class="top-menu">
-        <div class="menu-content">
-            <a href="#top" class="menu-logo">
-                <img src="website-logo.png" alt="BIMM Smart Logo" class="small-logo">
-            </a>
-            <ul>
-                <li><a href="#top">Home</a></li>
-                <li><a href="#section-i-want-it">I Want It</a></li>
-                <li><a href="#section-teach-me">Teach Me</a></li>
-                <li><a href="#section-do-it-for-me">Do It for Me</a></li>
-                <li><a href="#section-contact">Contact</a></li>
-                <li><a href="#section-about">About</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <header class="hero-section" id="top">
-        <div class="hero-content">
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#top">
+                <img src="/images/website-logo.png" alt="Website Logo" class="navbar-logo">
+            </a>
+        </div>
+        <ul>
+            <li><a href="#top">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    
+        
+
+    <header id="top">
+        <div class="text">
             <h1>Making You the Go-To BIM Expert</h1>
             <p>Welcome to BIMM Smart—your go-to resource for becoming the smartest BIM professional in the room. Explore top articles, news, tutorials, and apps designed to help you excel at work.</p>
-            <!-- Use Formspree or similar for secure email -->
-            <form id="signup-form" action="https://formspree.io/f/{your-form-id}" method="POST">
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                <button type="submit">Sign up to be up-to-date</button>
-            </form>
-            
+            <button onclick="subscribeNewsletter()">Subscribe to Our Newsletter</button>
         </div>
-        <div class="hero-image">
-            <img src="website-logo.png" alt="BIMM Smart Logo" class="logo">
-        </div>
+        <img src="/images/site-idea.png" alt="BIM Engineers Happy and Professional" class="header-image">
     </header>
+    
 
-    <section class="features">
-        <a href="#section-i-want-it" class="feature-item" id="feature-i-want-it">
-            <img src="I_want_it-removebg-preview.png" alt="I Want It Icon" class="feature-icon">
-            <div class="feature-text">
-                <h2>I Want It</h2>
-                <p>Ready-to-use solutions</p>
-            </div>
+
+<section id="features">
+    <h2>Explore Our Features</h2>
+    <div class="cards">
+        <div class="card">
+            <a href="#learn"></a>
+            <img src="/images/learn.svg" alt="Learn Icon" class="card-icon">
+            <h3>Learn</h3>
+            <p>Access tutorials and articles to enhance your BIM skills.</p>
+        </div>
+        <div class="card">
+            <a href="#network"></a>
+            <img src="/images/network-svgrepo-com.svg" alt="Networking Icon" class="card-icon">
+            <h3>Networking</h3>
+            <p>Connect with industry professionals and grow your network.</p>
+        </div>
+        <div class="card">
+            <a href="#apps"></a>
+            <img src="/images/apps-svgrepo-com.svg" alt="Apps Icon" class="card-icon">
+            <h3>Apps</h3>
+            <p>Explore tools and applications designed for BIM professionals.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="logo">
+        <a href="#top">
+            <img src="images/website-logo.png" alt="Website Logo" class="contact-logo">
         </a>
-        <a href="#section-teach-me" class="feature-item" id="feature-teach-me">
-            <img src="teach_me-removebg-preview.png" alt="Teach Me Icon" class="feature-icon">
-            <div class="feature-text">
-                <h2>Teach Me</h2>
-                <p>Step-by-step tutorials, articles, and events</p>
-            </div>
-        </a>
-        <a href="#section-do-it-for-me" class="feature-item" id="feature-do-it-for-me">
-            <img src="do_it_for_me-removebg-preview.png" alt="Do It for Me Icon" class="feature-icon">
-            <div class="feature-text">
-                <h2>Do It for Me</h2>
-                <p>Custom problem-solving, request a quote</p>
-            </div>
-        </a>
-    </section>
-
-    <!-- I Want It Section -->
-    <section class="feature-detail" id="section-i-want-it">
-        <h2>Ready-to-Use Solutions</h2>
-        <p>Download high-quality BIM models, templates, and tools that you can use immediately in your projects. Our content is designed to save you time and enhance your productivity.</p>
-        <img src="/bim-content.png" alt="BIM Content Image" class="feature-image">
-        <a href="/6_BIM_DIMENSIONS.zip" class="button" download>Download Now</a>
-    </section>
-
-    <!-- Teach Me Section -->
-    <section class="feature-detail" id="section-teach-me">
-        <h2>Learn with Our Tutorials</h2>
-        <p>Access step-by-step guides, in-depth articles, and live event recordings that will help you master BIM. Whether you're a beginner or an expert, our resources are tailored to elevate your skills.</p>
-        <a href="https://www.bimmsmart.com/tutorials" class="button">Start Learning</a>
-    </section>
-
-    <!-- Do It for Me Section -->
-    <section class="feature-detail" id="section-do-it-for-me">
-        <h2>Need Help? We’re Here for You</h2>
-        <p>If you need custom solutions or have a specific problem you want us to solve, just describe it in the box below, and we'll get back to you shortly.</p>
-        <form action="https://formspree.io/f/{your-form-id}" method="POST">
-            <textarea name="problem-description" placeholder="Describe your problem here..." rows="5" required></textarea>
-            <button type="submit">Send Request</button>
-        </form>
-        
-    </section>
-
-    <!-- Contact Section -->
-    <section class="feature-detail" id="section-contact">
+    </div>
+    <div class="contact-text">
         <h2>Contact Us</h2>
-        <p>If you have any questions or need further information, feel free to reach out to us at <strong>contact@bimmsmart.com</strong>.</p>
-        <button class="button" onclick="copyEmail()">Copy Email</button>
-    </section>
+        <p>If you have any questions or need further information, feel free to reach out to us at:</p>
+        <p><strong>Email:</strong> contact@bimmsmart.com</p>
+        <p><strong>Phone:</strong> +123-456-7890</p>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section class="feature-detail" id="section-about">
-        <h2>About the Author</h2>
-        <p>BIMM Smart is created by an experienced BIM professional dedicated to sharing knowledge and providing tools to help others excel in their careers. With a passion for innovation and technology, the author aims to make BIM accessible and easy to learn for everyone.</p>
-    </section>
 
-    <script>
-        function copyEmail() {
-            navigator.clipboard.writeText('contact@bimmsmart.com').then(function() {
-                alert('Email copied to clipboard');
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            });
-        }
-    </script>
+<footer>
+    <p>© 2024 BIM Smart. All rights reserved.</p>   
+</footer>
+
+
 </body>
 </html>

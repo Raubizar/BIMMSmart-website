@@ -1,287 +1,301 @@
+/* Color Variables */
+:root {
+    --primary-color: #007BFF; /* Main blue color */
+    --secondary-color: #0056b3; /* Darker blue for hover effects */
+    --text-color: #000; /* Black text color */
+    --accent-color: #FF5722; /* Orange color for subscribe button */
+}
+
+/* General Body Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212;
-    color: #ffffff;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-height: 100vh;
-    scroll-behavior: smooth; /* Smooth scrolling effect */
+    line-height: 1.6;
+    color: var(--text-color);
+    background: url('images/background.jpg') no-repeat center center fixed, #f0f0f0; /* Fallback to light gray */
+    background-size: cover;
+    position: relative;
 }
 
-/* Top Menu */
-.top-menu {
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Responsive Image Styling */
+.header-image {
+    max-width: 50%; /* Ensures the image does not exceed its container width */
+    height: auto; /* Maintains the aspect ratio */
+    border-radius: 20px; /* Optional: Keeps the rounded edges */
+    object-fit: contain; /* Ensures the image is scaled proportionally */
+}
+
+
+/* Navbar */
+.navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #1b1b1b;
+    background: #f9f9f9;
+    padding: 40px 20px; /* Padding around the navbar */
+    display: flex; /* Ensures horizontal alignment */
+    justify-content: space-between; /* Space between logo and menu */
+    align-items: center; /* Aligns items vertically */
     z-index: 1000;
-    padding: 10px 0;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.menu-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Navbar Logo */
+.navbar .logo {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center align logo vertically */
+}
+
+.navbar-logo {
+    width: 50px; /* Adjust size of the logo */
+    height: auto;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+    background: #f9f9f9;
+    padding: 10px 20px; /* Padding around the navbar */
+    display: flex; /* Ensures horizontal alignment */
+    justify-content: space-between; /* Space between logo and menu */
+    align-items: center; /* Aligns items vertically */
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.menu-logo {
-    flex-shrink: 0;
+/* Navbar Logo */
+.navbar .logo {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center align logo vertically */
+    flex: 1; /* Allows the logo to occupy one part of the navbar */
 }
 
-.small-logo {
-    height: 40px;
-    vertical-align: middle;
+.navbar-logo {
+    width: 30px; /* Doubled the size of the logo */
+    height: auto;
 }
 
-.top-menu ul {
-    list-style: none;
-    margin: 0;
+/* Navbar Menu */
+.navbar ul {
+    display: flex; /* Horizontal alignment for menu items */
+    justify-content: center; /* Centers the menu text horizontally */
+    gap: 20px; /* Space between menu items */
     padding: 0;
+    margin: 0;
+    list-style: none; /* Removes default list styling */
+    flex: 2; /* Allows the menu to take up more space for centering */
+}
+
+.navbar li {
+    margin: 0; /* No extra margin for list items */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--text-color); /* Default black text */
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px; /* Adds padding inside each link */
+    border-radius: 5px; /* Rounded corners */
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: var(--primary-color); /* Turns blue on hover */
+    color: white; /* Text turns white on hover */
+}
+
+
+
+/* Header Section */
+header {
+    padding: 40px 20px; /* Reduced padding for compactness */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-color);
+}
+
+header .text {
+    max-width: 50%;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+header button {
+    padding: 20px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+/* Pulsing Animation for Button */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px var(--accent-color);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px var(--accent-color);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px var(--accent-color);
+    }
+}
+
+header button:hover {
+    background-color: #e64a19; /* Slightly darker orange */
+}
+
+/* Features Section */
+section {
+    padding: 20px 20px; /* Reduced padding for compactness */
+    text-align: center;
+}
+
+.cards {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-grow: 1;
+    flex-wrap: wrap;
 }
 
-.top-menu ul li {
-    display: inline;
-}
-
-.top-menu ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.top-menu ul li a:hover {
-    background-color: #007BFF;
-}
-
-/* Adjust spacing to account for the fixed top menu */
-.hero-section {
-    margin-top: 80px; /* Adjust according to the height of the top menu */
-}
-
-.hero-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.card {
+    background: #f9f9f9;
     padding: 20px;
-    background-color: #1b1b1b;
-    width: 100%;
-    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    cursor: pointer; /* Makes the entire card clickable */
 }
 
-.hero-content {
-    max-width: 45%;
-    text-align: left;
+.card:hover {
+    background-color: var(--primary-color); /* Card turns blue on hover */
+    color: white;
+    transform: translateY(-5px); /* Slightly lifts the card */
 }
 
-.hero-content h1 {
-    font-size: 2rem;
+.card-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    transition: fill 0.3s ease, transform 0.3s ease;
+    fill: var(--primary-color);
+}
+
+.card:hover .card-icon {
+    fill: white; /* SVG icons turn white on hover */
+    transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}
+
+.card h3 {
+    font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
-.hero-content p {
-    font-size: 1.2rem;
+.card p {
+    font-size: 1rem;
     margin-bottom: 20px;
 }
 
-#signup-form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-#email {
-    padding: 10px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    flex-grow: 1;
-    max-width: 200px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.hero-image {
-    max-width: 45%;
-    text-align: right;
-}
-
-.logo {
-    width: auto;
-    height: 250px;
-    max-height: 100%;
-}
-
-.features {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #282828;
+.card a {
+    position: absolute; /* Makes the link cover the entire card */
+    top: 0;
+    left: 0;
     width: 100%;
-    box-sizing: border-box;
-    flex-wrap: wrap;
-    gap: 15px; /* Add gap between items */
+    height: 100%;
+    z-index: 1; /* Ensures the link is above all other elements */
+    text-decoration: none; /* Removes underline */
 }
 
-.feature-item {
-    background-color: #333333;
-    border-radius: 10px;
-    text-align: left;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    width: calc(33.33% - 30px); /* Make items take up a third of the space, minus the gap */
-    min-width: 150px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    color: inherit; /* Inherit text color */
-    text-decoration: none; /* Remove text underline */
-    display: block; /* Ensure the entire box is clickable */
+/* Contact Section */
+#contact {
+    background: #f9f9f9;
+    padding: 20px 20px; /* Adds space for better layout */
+    display: flex; /* Use flexbox to position text and logo */
+    align-items: center; /* Align items vertically */
+    gap: 20px; /* Space between logo and text */
 }
 
-.feature-item:hover {
-    background-color: #007BFF;
+.contact-logo {
+    width: 100px; /* Adjust logo size for the contact section */
+    height: auto;
+    text-align: center;
 }
 
-.feature-icon {
-    width: 90px; /* 1.5x size increase */
-    height: 90px; /* 1.5x size increase */
-    margin-right: 20px;
+.contact-text {
+    flex: 1; /* Makes the text take up remaining space */
+    text-align: center; /* Aligns text to the left */
 }
 
-.feature-text h2 {
-    font-size: 1.5rem;
+#contact p {
+    font-size: 1rem;
     margin: 0;
 }
 
-.feature-text p {
-    font-size: 1.2rem;
-    margin: 5px 0 0;
-    line-height: 1.5;
+
+/* Footer */
+footer {
+    background: var(--text-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-.feature-detail {
-    padding: 40px 20px;
-    background-color: #1b1b1b;
-    margin: 20px 0;
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
 }
 
-.feature-detail h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.feature-detail p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.feature-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 30px;
-}
-
-.button {
-    padding: 15px 30px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: #0056b3;
-}
-
-textarea {
-    width: 100%;
-    max-width: 600px;
-    padding: 15px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: none;
-    margin-bottom: 20px;
-    resize: vertical;
+.contact-logo:hover {
+    transform: scale(1.1); /* Slightly enlarge the logo on hover */
+    transition: transform 0.3s ease;
 }
 
 @media (max-width: 768px) {
-    .menu-content {
-        flex-direction: column;
+    .navbar ul {
+        flex-direction: column; /* Stack links vertically on smaller screens */
         align-items: center;
-    }
-
-    .top-menu ul {
-        flex-wrap: wrap;
         gap: 10px;
     }
 
-    .features {
-        flex-direction: column;
+    .header-image {
+        max-width: 50%; /* Full width for smaller screens */
+        margin-top: 20px; /* Add space below text */
     }
 
-    .feature-item {
-        width: 100%;
-        max-width: 300px;
-        margin: 10px auto;
-        flex-direction: column;
-        align-items: center;
+    #contact {
+        flex-direction: column; /* Stack logo and text vertically */
         text-align: center;
     }
 
-    .feature-icon {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    #signup-form {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    #email {
-        max-width: none;
-        width: 100%;
+    .contact-logo {
+        margin-bottom: 20px; /* Add space below logo */
     }
 }
