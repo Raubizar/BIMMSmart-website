@@ -4,6 +4,7 @@
     --secondary-color: #0056b3; /* Darker blue for hover effects */
     --text-color: #000; /* Black text color */
     --accent-color: #FF5722; /* Orange color for subscribe button */
+    --background-color: #f4f4f4; /* Default background color */
 }
 
 /* General Body Styling */
@@ -12,87 +13,49 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    color: var(--text-color);
-    background: url('images/background.jpg') no-repeat center center fixed, #f0f0f0; /* Fallback to light gray */
+    background: url('images/background.jpg') no-repeat center center fixed, var(--background-color);
     background-size: cover;
-    position: relative;
+    color: var(--text-color);
 }
 
-
-/* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
 }
 
-/* Responsive Image Styling */
-.header-image {
-    max-width: 50%; /* Ensures the image does not exceed its container width */
-    height: auto; /* Maintains the aspect ratio */
-    border-radius: 20px; /* Optional: Keeps the rounded edges */
-    object-fit: contain; /* Ensures the image is scaled proportionally */
-}
-
-
 /* Navbar */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     background: #f9f9f9;
-    padding: 40px 20px; /* Padding around the navbar */
-    display: flex; /* Ensures horizontal alignment */
-    justify-content: space-between; /* Space between logo and menu */
-    align-items: center; /* Aligns items vertically */
-    z-index: 1000;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between logo and menu */
+    z-index: 1000; /* Ensure it stays above other elements */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 60px; /* Define a fixed height for the navbar */
 }
 
-/* Navbar Logo */
 .navbar .logo {
-    display: flex; /* Align items horizontally */
-    align-items: center; /* Center align logo vertically */
+    display: flex;
+    align-items: center; /* Center-align the logo vertically */
+    justify-content: center; /* Center-align the logo horizontally */
 }
 
 .navbar-logo {
-    width: 50px; /* Adjust size of the logo */
+    width: 40px; /* Adjust logo size */
     height: auto;
 }
 
-/* Navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: #f9f9f9;
-    padding: 10px 20px; /* Padding around the navbar */
-    display: flex; /* Ensures horizontal alignment */
-    justify-content: space-between; /* Space between logo and menu */
-    align-items: center; /* Aligns items vertically */
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Navbar Logo */
-.navbar .logo {
-    display: flex; /* Align items horizontally */
-    align-items: center; /* Center align logo vertically */
-    flex: 1; /* Allows the logo to occupy one part of the navbar */
-}
-
-.navbar-logo {
-    width: 30px; /* Doubled the size of the logo */
-    height: auto;
-}
-
-/* Navbar Menu */
 .navbar ul {
-    display: flex; /* Horizontal alignment for menu items */
-    justify-content: center; /* Centers the menu text horizontally */
+    display: flex;
+    justify-content: center; /* Center the menu */
     gap: 20px; /* Space between menu items */
     padding: 0;
     margin: 0;
-    list-style: none; /* Removes default list styling */
-    flex: 2; /* Allows the menu to take up more space for centering */
+    list-style: none; /* Remove default list styling */
 }
 
 .navbar li {
@@ -100,7 +63,7 @@ html {
 }
 
 .navbar a {
-    text-decoration: none;
+    text-decoration: none; /* Remove underline */
     color: var(--text-color); /* Default black text */
     font-size: 1rem;
     font-weight: bold;
@@ -115,14 +78,13 @@ html {
 }
 
 
-
 /* Header Section */
 header {
-    padding: 40px 20px; /* Reduced padding for compactness */
+    margin-top: 60px; /* Same as the navbar height */
+    padding: 40px 20px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    color: var(--text-color);
+    align-items: center;
 }
 
 header .text {
@@ -140,7 +102,7 @@ header p {
 }
 
 header button {
-    padding: 20px 20px;
+    padding: 10px 20px;
     font-size: 1rem;
     color: white;
     background-color: var(--accent-color);
@@ -150,9 +112,19 @@ header button {
     animation: pulse 2s infinite;
 }
 
-/* Pulsing Animation for Button */
+header button:hover {
+    background-color: #e64a19;
+}
+
+.header-image {
+    max-width: 40%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Button Animation */
 @keyframes pulse {
-    0% {
+    0%, 100% {
         transform: scale(1);
         box-shadow: 0 0 5px var(--accent-color);
     }
@@ -160,19 +132,11 @@ header button {
         transform: scale(1.1);
         box-shadow: 0 0 15px var(--accent-color);
     }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 5px var(--accent-color);
-    }
-}
-
-header button:hover {
-    background-color: #e64a19; /* Slightly darker orange */
 }
 
 /* Features Section */
 section {
-    padding: 20px 20px; /* Reduced padding for compactness */
+    padding: 40px 20px;
     text-align: center;
 }
 
@@ -190,14 +154,16 @@ section {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    position: relative;
-    cursor: pointer; /* Makes the entire card clickable */
+    text-decoration: none; /* Remove underline */
+    color: black; /* Keep text black by default */
+    display: block; /* Makes the entire card clickable */
 }
 
 .card:hover {
-    background-color: var(--primary-color); /* Card turns blue on hover */
-    color: white;
+    background-color: var(--primary-color); /* Card background turns blue */
+    color: white; /* Text color turns white */
     transform: translateY(-5px); /* Slightly lifts the card */
 }
 
@@ -206,58 +172,50 @@ section {
     height: 50px;
     margin-bottom: 10px;
     transition: fill 0.3s ease, transform 0.3s ease;
-    fill: var(--primary-color);
+    fill: var(--primary-color); /* Default icon color */
 }
 
 .card:hover .card-icon {
-    fill: white; /* SVG icons turn white on hover */
-    transform: scale(1.1); /* Slightly enlarge the icon on hover */
+    fill: white; /* Icon color turns white on hover */
+    transform: scale(1.1); /* Slightly enlarges the icon on hover */
 }
 
-.card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+.card h3, .card p {
+    margin: 10px 0;
+    transition: color 0.3s ease; /* Smooth transition for text color */
 }
 
-.card p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-}
-
-.card a {
-    position: absolute; /* Makes the link cover the entire card */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Ensures the link is above all other elements */
-    text-decoration: none; /* Removes underline */
-}
 
 /* Contact Section */
 #contact {
     background: #f9f9f9;
-    padding: 20px 20px; /* Adds space for better layout */
-    display: flex; /* Use flexbox to position text and logo */
+    padding: 20px 20px;
+    display: flex;
+    justify-content: center; /* Center icon + text group horizontally */
     align-items: center; /* Align items vertically */
+    text-align: left; /* Align text within the group to the left */
     gap: 20px; /* Space between logo and text */
 }
 
 .contact-logo {
-    width: 100px; /* Adjust logo size for the contact section */
+    width: 100px; /* Adjust logo size */
     height: auto;
-    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.contact-logo:hover {
+    transform: scale(1.1); /* Slightly enlarge the logo on hover */
 }
 
 .contact-text {
-    flex: 1; /* Makes the text take up remaining space */
-    text-align: center; /* Aligns text to the left */
+    max-width: 600px; /* Optional: Limit text width for better readability */
 }
 
-#contact p {
+.contact-text p {
     font-size: 1rem;
     margin: 0;
 }
+
 
 
 /* Footer */
@@ -270,32 +228,61 @@ footer {
 
 footer p {
     margin: 0;
-    font-size: 0.9rem;
 }
 
-.contact-logo:hover {
-    transform: scale(1.1); /* Slightly enlarge the logo on hover */
-    transition: transform 0.3s ease;
+/* Posts Section (for Learn Page) */
+.posts {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
+    /* Navbar Adjustments */
+    .navbar {
+        padding: 10px 10px; /* Reduce padding */
+        font-size: 0.9rem; /* Slightly smaller text size */
+    }
+
     .navbar ul {
-        flex-direction: column; /* Stack links vertically on smaller screens */
-        align-items: center;
-        gap: 10px;
+        flex-direction: row; /* Ensure items stay on the same line */
+        justify-content: space-between; /* Distribute items evenly */
+        gap: 10px; /* Reduce spacing between items */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+        white-space: nowrap; /* Prevent text from wrapping */
+    }
+
+    .navbar a {
+        padding: 5px 10px; /* Reduce padding inside links */
+    }
+
+    /* Header Adjustments */
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header .text {
+        max-width: 100%; /* Make text full-width */
     }
 
     .header-image {
-        max-width: 50%; /* Full width for smaller screens */
-        margin-top: 20px; /* Add space below text */
+        max-width: 80%; /* Make image smaller for smaller screens */
+        margin-top: 20px;
     }
 
+    /* Contact Section Adjustments */
     #contact {
-        flex-direction: column; /* Stack logo and text vertically */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center-align items */
         text-align: center;
     }
 
     .contact-logo {
-        margin-bottom: 20px; /* Add space below logo */
+        margin-bottom: 20px; /* Add spacing below the logo */
     }
 }
+
