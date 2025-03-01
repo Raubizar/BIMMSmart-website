@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consolidated BIM Roles &amp; Courses</title>
+    <link rel="stylesheet" href="/styles.css" /> <!-- Link your CSS file -->
+    <script src="/script.js" defer></script> <!-- JavaScript for dynamic loading -->
+    <style>
+      /* Example styling; you can tailor it to match your own CSS */
+      .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 0.75rem;
+        vertical-align: top;
+      }
+      th {
+        background-color: #f2f2f2;
+        text-align: left;
+      }
+      caption {
+        caption-side: top;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+      a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      /* Optional column styling for clarity */
+      .role-col { width: 12%; }
+      .course-col { width: 20%; }
+      .duration-col { width: 10%; }
+      .provider-col { width: 20%; }
+      .topics-col { width: 20%; }
+      .why-col { width: 18%; }
+    </style>
+  </head>
+  <body>
+
+    <!-- Optional site header here -->
+    <div id="header"></div>
+
+    <!-- Table: Consolidated BIM Roles & Recommended Courses -->
+    <div class="table-wrapper">
+      <table>
+        <colgroup>
+          <col class="role-col" />
+          <col class="course-col" />
+          <col class="duration-col" />
+          <col class="provider-col" />
+          <col class="topics-col" />
+          <col class="why-col" />
+        </colgroup>
+        <caption>Consolidated BIM Roles &amp; Recommended Courses</caption>
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Recommended Course</th>
+            <th>Duration</th>
+            <th>Provider</th>
+            <th>Topics</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- BIM Manager (4 courses) -->
+          <tr>
+            <td rowspan="4"><strong>BIM Manager</strong></td>
+            <td>
+              <a href="https://www.bsitraining.com/iso19650" target="_blank">
+                ISO 19650 Fundamentals
+              </a>
+            </td>
+            <td>2–3 hours</td>
+            <td>Global eTraining, BSI Training</td>
+            <td>ISO standards, data requirements, information management</td>
+            <td>Establishes a strong foundation in global BIM standards.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.autodesk.com/university" target="_blank">
+                Autodesk Construction Cloud &amp; BIM 360 Masterclass
+              </a>
+            </td>
+            <td>6–8 hours</td>
+            <td>Autodesk University</td>
+            <td>ACC features, collaboration, integrations</td>
+            <td>Essential for company-wide BIM adoption and data management.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.udemy.com/course/bim-implementation" target="_blank">
+                Strategic BIM Implementation &amp; Management
+              </a>
+            </td>
+            <td>4–6 hours</td>
+            <td>Udemy, LinkedIn Learning</td>
+            <td>BIM strategy, change management, governance</td>
+            <td>Helps align BIM initiatives with business goals.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.coursera.org" target="_blank">
+                Leadership &amp; Communication in AEC
+              </a>
+            </td>
+            <td>4–5 weeks (part-time)</td>
+            <td>Coursera, edX</td>
+            <td>Team leadership, negotiation, stakeholder engagement</td>
+            <td>Enhances soft skills for managing multidisciplinary teams.</td>
+          </tr>
+
+          <!-- BIM Lead (4 courses) -->
+          <tr>
+            <td rowspan="4"><strong>BIM Lead</strong></td>
+            <td>
+              <a href="https://www.linkedin.com/learning/revit-advanced-workflows" target="_blank">
+                Revit Advanced Workflows
+              </a>
+            </td>
+            <td>5–7 hours</td>
+            <td>LinkedIn Learning, Autodesk University</td>
+            <td>Advanced Revit, parametric families, workflow optimization</td>
+            <td>Supports management of complex modeling tasks.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.udemy.com/course/navisworks-clash-detection" target="_blank">
+                Navisworks for Clash Detection &amp; Coordination
+              </a>
+            </td>
+            <td>3–4 hours</td>
+            <td>Udemy, Global eTraining</td>
+            <td>Model aggregation, clash detection, reporting</td>
+            <td>Key for multi-discipline coordination.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.autodesk.com/university" target="_blank">
+                CDE Workflows
+              </a>
+            </td>
+            <td>4 hours</td>
+            <td>Autodesk University, Bentley Learn</td>
+            <td>Data management, document control, CDE tools</td>
+            <td>Ensures consistency in project data and collaboration.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.coursera.org/specializations/project-management" target="_blank">
+                Project Coordination &amp; Team Management
+              </a>
+            </td>
+            <td>2–4 weeks (part-time)</td>
+            <td>Coursera, Lynda.com</td>
+            <td>Resource planning, risk management, communication</td>
+            <td>Develops leadership skills for effective team execution.</td>
+          </tr>
+
+          <!-- BIM Coordinator (4 courses) -->
+          <tr>
+            <td rowspan="4"><strong>BIM Coordinator</strong></td>
+            <td>
+              <a href="https://www.bsitraining.com/iso19650" target="_blank">
+                ISO 19650 for Coordination
+              </a>
+            </td>
+            <td>2–3 hours</td>
+            <td>BSI Training, Global eTraining</td>
+            <td>BEP &amp; MIDP fundamentals, document control</td>
+            <td>Aligns coordination tasks with recognized BIM standards.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.udemy.com/course/revit-navisworks-clash-detection" target="_blank">
+                Revit &amp; Navisworks: Clash Detection &amp; Reporting
+              </a>
+            </td>
+            <td>4–5 hours</td>
+            <td>Udemy, LinkedIn Learning</td>
+            <td>Model checking, clash detection, issue tracking</td>
+            <td>Essential for early identification and resolution of design conflicts.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://help.autodesk.com/view/ACCD/ENU/" target="_blank">
+                CDE Tools (ACC, BIM 360, Aconex)
+              </a>
+            </td>
+            <td>3–4 hours</td>
+            <td>Autodesk University, Aconex Academy</td>
+            <td>Version control, collaboration workflows, RFI management</td>
+            <td>Improves inter-discipline coordination and model accuracy.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.edx.org" target="_blank">
+                Collaboration &amp; Conflict Resolution in AEC
+              </a>
+            </td>
+            <td>2–3 weeks (part-time)</td>
+            <td>Coursera, edX</td>
+            <td>Communication strategies, negotiation, problem-solving</td>
+            <td>Enhances your ability to resolve conflicts collaboratively.</td>
+          </tr>
+
+          <!-- BIM Developer (4 courses) -->
+          <tr>
+            <td rowspan="4"><strong>BIM Developer</strong></td>
+            <td>
+              <a href="https://www.udemy.com/course/python-for-revit" target="_blank">
+                Python for Revit (Dynamo &amp; API Basics)
+              </a>
+            </td>
+            <td>5–6 hours</td>
+            <td>Udemy, Dynamo Primer, LinkedIn Learning</td>
+            <td>Python scripting, Dynamo fundamentals, automation</td>
+            <td>Provides coding skills for BIM automation and parametric design.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.pluralsight.com/courses/revit-api-fundamentals" target="_blank">
+                C# &amp; Revit Plugin Development
+              </a>
+            </td>
+            <td>6–8 hours</td>
+            <td>Pluralsight, Autodesk University</td>
+            <td>Revit API, custom plugin creation, event-driven programming</td>
+            <td>Enables advanced tool development for tailored BIM solutions.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.buildingsmart.org/standards/ifc/" target="_blank">
+                IFC Schema &amp; Interoperability
+              </a>
+            </td>
+            <td>3–4 hours</td>
+            <td>buildingSMART, Graphisoft Learn</td>
+            <td>IFC data structure, openBIM, data exchange</td>
+            <td>Ensures robust data exchange across various BIM platforms.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.coursera.org" target="_blank">
+                Agile &amp; DevOps in AEC
+              </a>
+            </td>
+            <td>4–5 weeks (part-time)</td>
+            <td>Coursera, Udemy</td>
+            <td>Agile methodologies, CI/CD, version control</td>
+            <td>Modernizes development workflow to optimize BIM tool creation.</td>
+          </tr>
+
+          <!-- BIM Modeler (4 courses) -->
+          <tr>
+            <td rowspan="4"><strong>BIM Modeler</strong></td>
+            <td>
+              <a href="https://www.autodesk.com/university" target="_blank">
+                Revit Essentials
+              </a>
+            </td>
+            <td>4–6 hours</td>
+            <td>Autodesk University, LinkedIn Learning</td>
+            <td>Basic modeling, families, drawing production</td>
+            <td>Establishes foundational skills in widely used BIM software.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.udemy.com/course/autocad-to-revit" target="_blank">
+                AutoCAD to Revit Transition
+              </a>
+            </td>
+            <td>3–4 hours</td>
+            <td>Udemy, Global eTraining</td>
+            <td>2D to 3D workflows, parametric design, documentation</td>
+            <td>Assists professionals moving from 2D drafting to 3D modeling.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.linkedin.com/learning/parametric-modeling" target="_blank">
+                Parametric Modeling &amp; Family Creation
+              </a>
+            </td>
+            <td>3–5 hours</td>
+            <td>LinkedIn Learning, Lynda.com</td>
+            <td>Advanced Revit families, parametric constraints, model optimization</td>
+            <td>Enhances creation of intelligent, adaptable design elements.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://enscape3d.com/learn-enscape/" target="_blank">
+                Visualization &amp; Rendering for BIM
+              </a>
+            </td>
+            <td>4–5 hours</td>
+            <td>Udemy, Enscape Academy, Twinmotion</td>
+            <td>Rendering techniques, lighting, materials, presentation</td>
+            <td>Improves ability to communicate design intent through visuals.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact"></div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+  </body>
+</html>

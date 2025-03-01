@@ -11,11 +11,12 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     line-height: 1.6;
-    background: url('images/background.jpg') no-repeat center center fixed, var(--background-color);
+    background: url('/images/background.jpg') no-repeat center center fixed, var(--background-color);
     background-size: cover;
-    color: var(--text-color);
+    color: #333;
+    text-align: center;
 }
 
 html {
@@ -77,6 +78,48 @@ html {
     color: white; /* Text turns white on hover */
 }
 
+/* Dropdown Menu Styles */
+.navbar .dropdown {
+    position: relative;
+}
+
+.navbar .dropdown-toggle {
+    cursor: pointer;
+}
+
+.navbar .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 1000;
+    border-radius: 4px;
+    padding: 8px 0;
+}
+
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar .dropdown-menu li {
+    display: block;
+    width: 100%;
+}
+
+.navbar .dropdown-menu a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s;
+}
+
+.navbar .dropdown-menu a:hover {
+    background-color: #f5f5f5;
+}
 
 /* Header Section */
 header {
@@ -162,9 +205,9 @@ section {
 }
 
 .card:hover {
-    background-color: var(--primary-color); /* Card background turns blue */
-    color: white; /* Text color turns white */
-    transform: translateY(-5px); /* Slightly lifts the card */
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-5px);
 }
 
 .card-icon {
@@ -176,7 +219,7 @@ section {
 }
 
 .card:hover .card-icon {
-    fill: white; /* Icon color turns white on hover */
+    fill: rgb(255, 255, 255); /* Icon color turns white on hover */
     transform: scale(1.1); /* Slightly enlarges the icon on hover */
 }
 
@@ -185,6 +228,69 @@ section {
     transition: color 0.3s ease; /* Smooth transition for text color */
 }
 
+/* Guide Content */
+.guide-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.guide-content .card {
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    flex: 0 1 250px;
+}
+
+/* Updated hover style for guide-content cards */
+.guide-content .card:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-5px);
+}
+
+/* Style the card icons */
+.guide-content .card img.card-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    transition: filter 0.3s ease;
+    /* Initially, assume the icons are dark (or use a filter if needed) */
+    filter: brightness(0) saturate(100%);
+}
+
+/* On card hover, change icon to white */
+.guide-content .card:hover img.card-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Remove or comment out this block if arrows are no longer needed */
+.guide-content .arrow {
+    text-align: center;
+    font-size: 2rem;
+    color: #555;
+    margin: -10px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 769px) {
+    .guide-content .arrow::before {
+        content: "→";
+    }
+}
+
+@media (max-width: 768px) {
+    .guide-content .arrow::before {
+        content: "↓";
+    }
+}
 
 /* Contact Section */
 #contact {
@@ -215,8 +321,6 @@ section {
     font-size: 1rem;
     margin: 0;
 }
-
-
 
 /* Footer */
 footer {
@@ -284,5 +388,367 @@ footer p {
     .contact-logo {
         margin-bottom: 20px; /* Add spacing below the logo */
     }
+}
+
+/* ===================================================
+   BIMM SMART - GLOBAL BASE STYLES
+   =================================================== */
+body {
+    font-family: Arial, sans-serif;
+    background: url('/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* ===================================================
+   BIMM SMART - HEADER STYLES
+   =================================================== */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2em;
+    color: #222;
+}
+
+.header p {
+    font-size: 1em;
+    color: #555;
+}
+
+/* ===================================================
+   BIM CAREERS MATRIX - TABLE CONTAINER STYLES
+   =================================================== */
+.table-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* ===================================================
+   BIM CAREERS MATRIX - TABLE STYLES
+   =================================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+}
+
+th, td {
+    padding: 8px;  /* Reduced padding for a more compact table */
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+th {
+    background-color: #222 !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+th[colspan] {
+    background-color: #111 !important;
+    font-size: 1.1em;
+}
+
+/* ===================================================
+   BIM CAREERS MATRIX - COMPACT TABLE STYLES (Updated)
+   =================================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+}
+
+table th,
+table td {
+    padding: 8px;  /* Reduced padding for a more compact table */
+    border: 1px solid #ddd;
+    font-size: 0.9em;
+    vertical-align: middle;
+}
+
+/* Center-align Role cells (first and third columns) */
+.table-wrapper td:nth-child(1),
+.table-wrapper td:nth-child(3) {
+    text-align: center;
+}
+
+/* Left-align Recommended Courses cells (second and fourth columns) */
+.table-wrapper td:nth-child(2),
+.table-wrapper td:nth-child(4) {
+    text-align: left;
+}
+
+table th {
+    background-color: #222 !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    text-align: center;
+}
+
+table th[colspan] {
+    background-color: #111 !important;
+    font-size: 1.1em;
+}
+
+/* Adjust list styling within table cells */
+table ul {
+    margin: 0;
+    padding-left: 10px;
+    list-style: disc;
+}
+
+/* ===================================================
+   BIM CAREERS MATRIX - FIXED & CENTRALIZED TABLE STYLES
+   =================================================== */
+.table-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.table-wrapper table {
+    margin: 0 auto;
+    max-width: 1800px;  /* Keeps the table widescreen */
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table-wrapper table col.narrow-col {
+    width: 10%;
+}
+
+.table-wrapper table col.wide-col {
+    width: 35%;
+}
+
+/* Optionally, adjust cell content wrapping */
+.table-wrapper th,
+.table-wrapper td {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* ===================================================
+   BIM CAREERS MATRIX - COMPACT TABLE STYLES (More Compact)
+   =================================================== */
+.table-wrapper table {
+    margin: 0 auto;
+    max-width: 1800px;  /* Keeps the table widescreen */
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+    padding: 4px;  /* Reduced padding for a very compact look */
+    border: 1px solid #ddd;
+    font-size: 0.85em;  /* Slightly smaller font */
+    vertical-align: middle;
+}
+
+/* Optionally adjust header alignment */
+.table-wrapper th {
+    background-color: #222 !important;
+    color: white !important;
+    text-align: center;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.table-wrapper th[colspan] {
+    background-color: #111 !important;
+    font-size: 1.0em;
+}
+
+/* Adjust list styling within table cells */
+.table-wrapper table ul {
+    margin: 0;
+    padding-left: 8px;  /* Slightly reduced indent */
+    list-style: disc;
+}
+
+/* Alignment for our 6-column table example */
+.table-wrapper td:nth-child(1) { /* Role cells */
+    text-align: center;
+}
+.table-wrapper td:nth-child(2),  /* Recommended Courses */
+.table-wrapper td:nth-child(4),  /* Provider */
+.table-wrapper td:nth-child(5),  /* Topics */
+.table-wrapper td:nth-child(6) { /* Why */
+    text-align: left;
+}
+.table-wrapper td:nth-child(3) { /* Duration */
+    text-align: left;
+}
+
+/* ===================================================
+   BIMM SMART - CALL TO ACTION BOX STYLES
+   =================================================== */
+.cta-box {
+    width: 25%;
+    padding: 20px;
+    background: #ff7b00;
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-box a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+}
+
+.cta-box:hover {
+    transform: scale(1.05);
+    animation: pulse 1.5s infinite;
+}
+
+/* ===================================================
+   BIMM SMART - PULSING ANIMATION
+   =================================================== */
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px rgba(255, 123, 0, 0.8); }
+    50% { box-shadow: 0 0 20px rgba(255, 123, 0, 1); }
+    100% { box-shadow: 0 0 10px rgba(255, 123, 0, 0.8); }
+}
+
+/* ===================================================
+   BIMM SMART - FOOTER STYLES
+   =================================================== */
+.footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-top: 2px solid #ccc;
+    text-align: center;
+}
+
+.footer img {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.footer p {
+    font-size: 1em;
+    margin: 5px;
+}
+
+/* ===================================================
+   BIMM SMART - PRINT STYLES
+   =================================================== */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    body {
+        background: url('/images/background.jpg') no-repeat center center fixed !important;
+        background-size: cover !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    .cta-box {
+        display: none; /* Hide CTA in print */
+    }
+
+    .footer {
+        border: none;
+    }
+}
+
+/* Newsletter Modal Styles */
+.newsletter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.newsletter-form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.newsletter-form h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
 }
 
