@@ -228,6 +228,175 @@ section {
     transition: color 0.3s ease; /* Smooth transition for text color */
 }
 
+/* Orange Card */
+.card-orange {
+    background: #FF6B00;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.card-orange:hover {
+    background-color: #FF8533;
+    color: white;
+    transform: translateY(-5px);
+}
+
+/* Blue Card */
+.card-blue {
+    background: #0066CC;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.card-blue:hover {
+    background-color: #0080FF;
+    color: white;
+    transform: translateY(-5px);
+}
+
+/* Dark Blue Card */
+.card-darkblue {
+    background: #003366;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.card-darkblue:hover {
+    background-color: #004C99;
+    color: white;
+    transform: translateY(-5px);
+}
+
+/* Light Steel Card */
+.card-lightsteel {
+  background: #D1D8DF; /* Light Steel background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  color: #3D4754; /* Dark Steel for text */
+  display: block;
+}
+
+.card-lightsteel:hover {
+  background-color: var(--primary-color); /* Same hover blue as default .card:hover */
+  color: white;
+  transform: translateY(-5px);
+}
+
+/* Medium Steel Card */
+.card-medsteel {
+  background: #A1A9B2; /* Medium Steel */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  color: #3D4754; /* Dark Steel text */
+  display: block;
+}
+
+.card-medsteel:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-5px);
+}
+
+/* Dark Steel Card */
+.card-darksteel {
+  background: #3D4754; /* Dark Steel */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  color: #F2F4F7; /* Highlight shade for text */
+  display: block;
+}
+
+.card-darksteel:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-5px);
+}
+
+/* Accent Card (Deep Steel) */
+.card-accent {
+  background: #2C3644; /* Accent Edge color */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  color: #F2F4F7; /* Light steel highlight for text */
+  display: block;
+}
+
+.card-accent:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-5px);
+}
+
+/* Highlight Card (Subtle Background) */
+.card-highlight {
+  background: #F2F4F7; /* Highlight background */
+  padding: 20px;
+  border: 2px solid #2C3644; /* Accent Edge border */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  color: #3D4754; /* Dark Steel text */
+  display: block;
+}
+
+.card-highlight:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-5px);
+}
+
 /* Guide Content */
 .guide-content {
     display: flex;

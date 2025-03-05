@@ -22,9 +22,12 @@ function subscribeNewsletter() {
       <div id="status-message"></div>
     </div>
   `;
-  
+
   document.body.appendChild(modal);
-  
+  // Make modal visible with a fade-in effect
+  setTimeout(() => {
+    modal.style.opacity = '1';
+  }, 10); // Small delay for the transition to work  
   // Close button functionality
   const closeBtn = modal.querySelector('.close-btn');
   closeBtn.addEventListener('click', () => {
@@ -138,3 +141,76 @@ document.addEventListener('DOMContentLoaded', () => {
     loadComponent('#footer', '/components/footer.html');
 });
 
+// Função para solicitar o material do Kit BIM via email
+function receiveYourKit() {
+  // Cria o modal (sobreposição)
+  const modal = document.createElement('div');
+  modal.className = 'newsletter-modal';
+  modal.innerHTML = `
+    <div class="newsletter-form">
+      <span class="close-btn">&times;</span>
+      <h2>Preencha seus dados para receber o Kit de Modelos (CV, Cover Letter e muito mais)</h2>
+      <p>Assim que enviar, verifique sua caixa de entrada para baixar os arquivos e começar a aplicar para vagas!</p>
+      <form id="kitRequestForm">
+        <div class="form-group">
+          <label for="kit-name">Nome Completo</label>
+          <input type="text" id="kit-name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="kit-email">Email</label>
+          <input type="email" id="kit-email" name="email" required>
+        </div>
+        <button type="submit" class="submit-btn">Quero Receber o Kit</button>
+      </form>
+      <div id="kit-status-message"></div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  // Make modal visible with a fade-in effect
+  setTimeout(() => {
+    modal.style.opacity = '1';
+  }, 10);
+  
+  // Close button functionality
+  const closeBtn = modal.querySelector('.close-btn');
+  closeBtn.addEventListener('click', () => {
+    document.body.removeChild(modal);
+  });
+  
+  // Form submission
+  const form = modal.querySelector('#kitRequestForm');
+  form.addEventListener('submit', handleKitFormSubmission);
+}
+
+// Handle form submission for the kit request
+function handleKitFormSubmission(e) {
+  e.preventDefault();
+  
+  const name = document.getElementById('kit-name').value.trim();
+  const email = document.getElementById('kit-email').value.trim();
+  
+  const statusMessage = document.getElementById('kit-status-message');
+  statusMessage.textContent = 'Sending...';
+  statusMessage.style.color = 'black';
+  
+  // Here you would add the actual submission code
+  // Similar to the newsletter subscription logic
+  console.log(`Kit requested by ${name} (${email})`);
+  
+  statusMessage.textContent = 'Thank you! Check your email for the BIM kit.';
+  statusMessage.style.color = 'green';
+}
+
+// Load components
+document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('#header', '/components/header.html');
+    loadComponent('#contact', '/components/contact.html');
+    loadComponent('#footer', '/components/footer.html');
+    
+    // Example: Add event listener to a button with id "request-kit-btn"
+    const kitButton = document.getElementById('request-kit-btn');
+    if (kitButton) {
+        kitButton.addEventListener('click', receiveYourKit);
+    }
+});
