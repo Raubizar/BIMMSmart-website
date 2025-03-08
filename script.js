@@ -1,5 +1,39 @@
+// Enhanced email validation function
+function isValidEmail(email) {
+  // Basic format check with regex:
+  //  - At least one character before and after the '@'
+  //  - Only letters, digits, or .-_ in domain
+  //  - TLD requires at least 2 letters
+  const basicRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+  if (!basicRegex.test(email)) return false;
+  
+  // Split into local + domain parts
+  const [localPart, domainPart] = email.split('@');
+  
+  // No consecutive dots in local part
+  if (localPart.includes('..')) return false;
 
-// Updated function with date/time tracking
+  // No leading or trailing dots in local part
+  if (localPart.startsWith('.') || localPart.endsWith('.')) return false;
+
+  // Domain part checks
+  if (!domainPart) return false;
+
+  // Domain shouldn't start or end with a hyphen or dot
+  if (
+    domainPart.startsWith('.') || domainPart.startsWith('-') ||
+    domainPart.endsWith('.')   || domainPart.endsWith('-')
+  ) {
+    return false;
+  }
+    
+  // No consecutive dots in domain
+  if (domainPart.includes('..')) return false;
+  
+  return true;
+}
+
+// Show newsletter modal and handle subscription
 function subscribeNewsletter() {
   // Create modal overlay
   const modal = document.createElement('div');
@@ -9,10 +43,11 @@ function subscribeNewsletter() {
       <span class="close-btn">&times;</span>
       <h2>Subscribe to Our Newsletter</h2>
       <p>Stay updated with the latest BIM tips, tools, and insights!</p>
-      <form id="newsletterForm">
+      <form id="newsletterForm" novalidate>
         <div class="form-group">
           <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" required>
+          <!-- Added maxlength to limit name length at input -->
+          <input type="text" id="name" name="name" required maxlength="50">
         </div>
         <div class="form-group">
           <label for="email">Your Email</label>
@@ -25,39 +60,71 @@ function subscribeNewsletter() {
   `;
 
   document.body.appendChild(modal);
-  // Make modal visible with a fade-in effect
+  // Fade-in effect
   setTimeout(() => {
     modal.style.opacity = '1';
-  }, 10); // Small delay for the transition to work
+  }, 10);
 
-  // Close button functionality
+  // Close button
   const closeBtn = modal.querySelector('.close-btn');
   closeBtn.addEventListener('click', () => {
     document.body.removeChild(modal);
   });
-  
-  // Form submission
+
+  // Form submission with validation
   const form = modal.querySelector('#newsletterForm');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const name = nameField.value.trim();
+    const email = emailField.value.trim();
+    const statusMessage = document.getElementById('status-message');
     
-    if (!name || !email) {
-      document.getElementById('status-message').textContent = 'Please fill in all fields';
-      document.getElementById('status-message').style.color = 'red';
+    // Reset previous messages
+    statusMessage.textContent = '';
+    statusMessage.style.color = 'black';
+    
+    let isValid = true;
+    const errorMessages = [];
+    
+    // Validate name
+    if (!name) {
+      errorMessages.push('Please enter your name');
+      isValid = false;
+    } else if (name.length < 2 || name.length > 50) {
+      errorMessages.push('Name must be between 2-50 characters');
+      isValid = false;
+    } 
+    // Allow letters, accented chars, spaces, hyphen, apostrophe, period
+    else if (!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s'\-\.]+$/.test(name)) {
+      errorMessages.push('Name contains invalid characters');
+      isValid = false;
+    }
+    
+    // Validate email
+    if (!email) {
+      errorMessages.push('Please enter your email address');
+      isValid = false;
+    } else if (!isValidEmail(email)) {
+      errorMessages.push('Please enter a valid email address');
+      isValid = false;
+    }
+    
+    if (!isValid) {
+      statusMessage.textContent = errorMessages.join('. ');
+      statusMessage.style.color = 'red';
       return;
     }
     
-    // Show loading state
-    const statusMessage = document.getElementById('status-message');
+    // If valid
     statusMessage.textContent = 'Sending...';
     statusMessage.style.color = 'black';
     const submitBtn = form.querySelector('.submit-btn');
     submitBtn.disabled = true;
     
-    // Get current date and time in EU format (dd/mm/yyyy HH:mm:ss)
+    // Date/time in dd/mm/yyyy HH:mm:ss
     const now = new Date();
     const timestamp = new Intl.DateTimeFormat('en-GB', {
       day: '2-digit',
@@ -68,7 +135,7 @@ function subscribeNewsletter() {
       second: '2-digit'
     }).format(now);
     
-    // Use JSON data with date/time
+    // Prepare JSON
     const data = JSON.stringify({
       name: name,
       email: email,
@@ -77,29 +144,25 @@ function subscribeNewsletter() {
       signup_date: timestamp
     });
     
-    // Send data to webhook with timeout
+    // POST to Make webhook
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
     
     fetch('https://hook.eu2.make.com/tb1qmztf62db7odq4uhu0d5mhy42qk8o', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: data,
       signal: controller.signal
     })
     .then(response => {
       clearTimeout(timeoutId);
-      return response;
-    })
-    .then(response => {
       if (!response.ok) {
         console.error('Webhook response:', response.status, response.statusText);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      
-      // Success handling
+      return response;
+    })
+    .then(() => {
       statusMessage.textContent = 'Thank you for subscribing to our newsletter!';
       statusMessage.style.color = 'green';
       setTimeout(() => {
@@ -121,6 +184,7 @@ function subscribeNewsletter() {
   });
 }
 
+// Load external HTML components
 function loadComponent(selector, url) {
   fetch(url)
     .then(response => {
@@ -133,9 +197,8 @@ function loadComponent(selector, url) {
     .catch(error => console.error('Error loading component:', error));
 }
 
-// Função para solicitar informações sobre cursos via modal
+// Receive your kit modal function
 function receiveYourKit() {
-  // Cria o modal (sobreposição)
   const modal = document.createElement('div');
   modal.className = 'newsletter-modal';
   modal.innerHTML = `
@@ -143,10 +206,11 @@ function receiveYourKit() {
       <span class="close-btn">&times;</span>
       <h2>Preencha seus dados</h2>
       <p>Qual curso você gostaria de saber mais?</p>
-      <form id="courseRequestForm">
+      <form id="courseRequestForm" novalidate>
         <div class="form-group">
           <label for="kit-name">Nome Completo</label>
-          <input type="text" id="kit-name" name="name" required>
+          <!-- Add maxlength to prevent excessive input -->
+          <input type="text" id="kit-name" name="name" required maxlength="50">
         </div>
         <div class="form-group">
           <label for="kit-email">Email</label>
@@ -169,23 +233,20 @@ function receiveYourKit() {
   `;
   
   document.body.appendChild(modal);
-  // Make modal visible with a fade-in effect
   setTimeout(() => {
     modal.style.opacity = '1';
   }, 10);
   
-  // Close button functionality
   const closeBtn = modal.querySelector('.close-btn');
   closeBtn.addEventListener('click', () => {
     document.body.removeChild(modal);
   });
   
-  // Form submission
+  // Attach submission handler
   const form = modal.querySelector('#courseRequestForm');
   form.addEventListener('submit', handleCourseFormSubmission);
 }
 
-// Handle form submission for the course request
 function handleCourseFormSubmission(e) {
   e.preventDefault();
 
@@ -194,14 +255,53 @@ function handleCourseFormSubmission(e) {
   const course = document.getElementById('kit-course').value;
   
   const statusMessage = document.getElementById('kit-status-message');
+  
+  statusMessage.textContent = '';
+  statusMessage.style.color = 'black';
+  
+  let isValid = true;
+  const errorMessages = [];
+  
+  // Name validation
+  if (!name) {
+    errorMessages.push('Por favor, digite seu nome');
+    isValid = false;
+  } else if (name.length < 2 || name.length > 50) {
+    errorMessages.push('Nome deve ter entre 2-50 caracteres');
+    isValid = false;
+  } else if (!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s'\-\.]+$/.test(name)) {
+    errorMessages.push('Nome contém caracteres inválidos');
+    isValid = false;
+  }
+  
+  // Email validation
+  if (!email) {
+    errorMessages.push('Por favor, digite seu email');
+    isValid = false;
+  } else if (!isValidEmail(email)) {
+    errorMessages.push('Por favor, digite um email válido');
+    isValid = false;
+  }
+  
+  // Course validation
+  if (!course) {
+    errorMessages.push('Por favor, selecione um curso');
+    isValid = false;
+  }
+  
+  if (!isValid) {
+    statusMessage.textContent = errorMessages.join('. ');
+    statusMessage.style.color = 'red';
+    return;
+  }
+  
   statusMessage.textContent = 'Enviando...';
   statusMessage.style.color = 'black';
   
-  // Disable button to prevent multiple submissions
   const submitBtn = e.target.querySelector('.submit-btn');
   submitBtn.disabled = true;
 
-  // Get current date/time in EU format
+  // Get date/time in dd/mm/yyyy HH:mm:ss
   const now = new Date();
   const timestamp = new Intl.DateTimeFormat('en-GB', {
     day: '2-digit',
@@ -212,16 +312,15 @@ function handleCourseFormSubmission(e) {
     second: '2-digit'
   }).format(now);
 
-  // Prepare JSON data
   const data = JSON.stringify({
-    name: name,
-    email: email,
-    course: course,
+    name,
+    email,
+    course,
     subject: `Interesse no curso: ${course}`,
     signup_date: timestamp
   });
 
-  // Send data to the Make webhook with a 10-second timeout
+  // Send to your Make webhook
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 10000);
 
@@ -233,9 +332,6 @@ function handleCourseFormSubmission(e) {
   })
   .then(response => {
     clearTimeout(timeoutId);
-    return response;
-  })
-  .then(response => {
     if (!response.ok) {
       console.error('Webhook response:', response.status, response.statusText);
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -243,7 +339,8 @@ function handleCourseFormSubmission(e) {
     statusMessage.textContent = 'Obrigado! Em breve entraremos em contato por email.';
     statusMessage.style.color = 'green';
     setTimeout(() => {
-      document.body.removeChild(document.querySelector('.newsletter-modal'));
+      const modal = document.querySelector('.newsletter-modal');
+      if (modal) document.body.removeChild(modal);
     }, 3000);
   })
   .catch(error => {
@@ -259,16 +356,15 @@ function handleCourseFormSubmission(e) {
   });
 }
 
-// Load components
+// Finally, load your components on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   loadComponent('#header', '/components/header.html');
   loadComponent('#contact', '/components/contact.html');
   loadComponent('#footer', '/components/footer.html');
   
-  // Example: Add event listener to a button with id "request-kit-btn"
+  // Example usage: if you have a button that triggers the modal
   const kitButton = document.getElementById('request-kit-btn');
   if (kitButton) {
     kitButton.addEventListener('click', receiveYourKit);
   }
 });
-
