@@ -76,5 +76,19 @@
   <!-- Footer -->
   <div id="footer"></div>
 
+  <!-- Add this invisible field to your form HTML -->
+  <div style="opacity:0;position:absolute;top:0;left:0;height:0;width:0;z-index:-1;">
+    <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+  </div>
+
+  <script>
+    // Check in your submit handler
+    if (document.getElementById('website').value !== '') {
+      // Silently fail - this is likely a bot
+      statusMessage.textContent = 'Thank you for subscribing!';
+      return false;
+    }
+  </script>
+
 </body>
 </html>

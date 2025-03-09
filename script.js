@@ -1,39 +1,18 @@
-// Enhanced email validation function
+/****************************************
+ * 1. Email Validation Utility Function *
+ ****************************************/
 function isValidEmail(email) {
-  // Basic format check with regex:
-  //  - At least one character before and after the '@'
-  //  - Only letters, digits, or .-_ in domain
-  //  - TLD requires at least 2 letters
+  // Basic regex:
+  // - At least one character before the '@'
+  // - TLD requires at least 2 letters
+  // - Accepts letters, digits, '.', '%', '+', '-'
   const basicRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
-  if (!basicRegex.test(email)) return false;
-  
-  // Split into local + domain parts
-  const [localPart, domainPart] = email.split('@');
-  
-  // No consecutive dots in local part
-  if (localPart.includes('..')) return false;
-
-  // No leading or trailing dots in local part
-  if (localPart.startsWith('.') || localPart.endsWith('.')) return false;
-
-  // Domain part checks
-  if (!domainPart) return false;
-
-  // Domain shouldn't start or end with a hyphen or dot
-  if (
-    domainPart.startsWith('.') || domainPart.startsWith('-') ||
-    domainPart.endsWith('.')   || domainPart.endsWith('-')
-  ) {
-    return false;
-  }
-    
-  // No consecutive dots in domain
-  if (domainPart.includes('..')) return false;
-  
-  return true;
+  return basicRegex.test(email);
 }
 
-// Show newsletter modal and handle subscription
+/********************************************
+ * 2. subscribeNewsletter() - Minimal Popup *
+ ********************************************/
 function subscribeNewsletter() {
   // Create modal overlay
   const modal = document.createElement('div');
@@ -46,7 +25,6 @@ function subscribeNewsletter() {
       <form id="newsletterForm" novalidate>
         <div class="form-group">
           <label for="name">Your Name</label>
-          <!-- Added maxlength to limit name length at input -->
           <input type="text" id="name" name="name" required maxlength="50">
         </div>
         <div class="form-group">
@@ -59,11 +37,11 @@ function subscribeNewsletter() {
     </div>
   `;
 
+  // Add modal to DOM
   document.body.appendChild(modal);
-  // Fade-in effect
-  setTimeout(() => {
-    modal.style.opacity = '1';
-  }, 10);
+
+  // Fade-in effect (optional)
+  setTimeout(() => { modal.style.opacity = '1'; }, 10);
 
   // Close button
   const closeBtn = modal.querySelector('.close-btn');
@@ -71,18 +49,16 @@ function subscribeNewsletter() {
     document.body.removeChild(modal);
   });
 
-  // Form submission with validation
+  // Handle form submission
   const form = modal.querySelector('#newsletterForm');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    const nameField = document.getElementById('name');
-    const emailField = document.getElementById('email');
-    const name = nameField.value.trim();
-    const email = emailField.value.trim();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
     const statusMessage = document.getElementById('status-message');
     
-    // Reset previous messages
+    // Reset status message
     statusMessage.textContent = '';
     statusMessage.style.color = 'black';
     
@@ -96,9 +72,7 @@ function subscribeNewsletter() {
     } else if (name.length < 2 || name.length > 50) {
       errorMessages.push('Name must be between 2-50 characters');
       isValid = false;
-    } 
-    // Allow letters, accented chars, spaces, hyphen, apostrophe, period
-    else if (!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s'\-\.]+$/.test(name)) {
+    } else if (!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s'\-\.]+$/.test(name)) {
       errorMessages.push('Name contains invalid characters');
       isValid = false;
     }
@@ -111,43 +85,51 @@ function subscribeNewsletter() {
       errorMessages.push('Please enter a valid email address');
       isValid = false;
     }
-    
+
+    // OPTIONAL: 1-minute submission cooldown
+    const lastSubmission = localStorage.getItem('lastSubmission');
+    if (lastSubmission && (Date.now() - parseInt(lastSubmission)) < 60000) {
+      errorMessages.push('Please wait a minute before submitting again.');
+      isValid = false;
+    }
+
+    // If not valid, display errors
     if (!isValid) {
       statusMessage.textContent = errorMessages.join('. ');
       statusMessage.style.color = 'red';
       return;
     }
-    
-    // If valid
+
+    // Record submission time
+    localStorage.setItem('lastSubmission', Date.now());
+
+    // Indicate sending
     statusMessage.textContent = 'Sending...';
     statusMessage.style.color = 'black';
+
+    // Disable submit button
     const submitBtn = form.querySelector('.submit-btn');
     submitBtn.disabled = true;
-    
-    // Date/time in dd/mm/yyyy HH:mm:ss
+
+    // Build the final JSON payload
     const now = new Date();
     const timestamp = new Intl.DateTimeFormat('en-GB', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
     }).format(now);
-    
-    // Prepare JSON
+
     const data = JSON.stringify({
       name: name,
       email: email,
       to_email: 'contact@bimmsmart.com',
-      subject: `Newsletter subscription - ${name}`,
+      subject: `Newsletter - ${name}`,
       signup_date: timestamp
     });
-    
-    // POST to Make webhook
+
+    // Fetch: send to your Make webhook
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
-    
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s
+
     fetch('https://hook.eu2.make.com/tb1qmztf62db7odq4uhu0d5mhy42qk8o', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -165,6 +147,7 @@ function subscribeNewsletter() {
     .then(() => {
       statusMessage.textContent = 'Thank you for subscribing to our newsletter!';
       statusMessage.style.color = 'green';
+      // Close modal after 3 seconds
       setTimeout(() => {
         document.body.removeChild(modal);
       }, 3000);
@@ -184,21 +167,11 @@ function subscribeNewsletter() {
   });
 }
 
-// Load external HTML components
-function loadComponent(selector, url) {
-  fetch(url)
-    .then(response => {
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return response.text();
-    })
-    .then(data => {
-      document.querySelector(selector).innerHTML = data;
-    })
-    .catch(error => console.error('Error loading component:', error));
-}
-
-// Receive your kit modal function
+/***************************************************
+ * 3. receiveYourKit() - Example "Kit" Modal Popup *
+ ***************************************************/
 function receiveYourKit() {
+  // Build your kit modal
   const modal = document.createElement('div');
   modal.className = 'newsletter-modal';
   modal.innerHTML = `
@@ -209,7 +182,6 @@ function receiveYourKit() {
       <form id="courseRequestForm" novalidate>
         <div class="form-group">
           <label for="kit-name">Nome Completo</label>
-          <!-- Add maxlength to prevent excessive input -->
           <input type="text" id="kit-name" name="name" required maxlength="50">
         </div>
         <div class="form-group">
@@ -233,20 +205,21 @@ function receiveYourKit() {
   `;
   
   document.body.appendChild(modal);
-  setTimeout(() => {
-    modal.style.opacity = '1';
-  }, 10);
+  setTimeout(() => { modal.style.opacity = '1'; }, 10);
   
   const closeBtn = modal.querySelector('.close-btn');
   closeBtn.addEventListener('click', () => {
     document.body.removeChild(modal);
   });
   
-  // Attach submission handler
+  // Form submission
   const form = modal.querySelector('#courseRequestForm');
   form.addEventListener('submit', handleCourseFormSubmission);
 }
 
+/***********************************************************
+ * 4. handleCourseFormSubmission() for the "Kit" request   *
+ **********************************************************/
 function handleCourseFormSubmission(e) {
   e.preventDefault();
 
@@ -255,14 +228,13 @@ function handleCourseFormSubmission(e) {
   const course = document.getElementById('kit-course').value;
   
   const statusMessage = document.getElementById('kit-status-message');
-  
   statusMessage.textContent = '';
   statusMessage.style.color = 'black';
   
   let isValid = true;
   const errorMessages = [];
   
-  // Name validation
+  // Validate name
   if (!name) {
     errorMessages.push('Por favor, digite seu nome');
     isValid = false;
@@ -274,7 +246,7 @@ function handleCourseFormSubmission(e) {
     isValid = false;
   }
   
-  // Email validation
+  // Validate email
   if (!email) {
     errorMessages.push('Por favor, digite seu email');
     isValid = false;
@@ -283,35 +255,42 @@ function handleCourseFormSubmission(e) {
     isValid = false;
   }
   
-  // Course validation
+  // Validate course
   if (!course) {
     errorMessages.push('Por favor, selecione um curso');
     isValid = false;
   }
-  
+
+  // OPTIONAL: 1-minute submission cooldown
+  const lastSubmission = localStorage.getItem('lastSubmission');
+  if (lastSubmission && (Date.now() - parseInt(lastSubmission)) < 60000) {
+    errorMessages.push('Please wait a minute before submitting again.');
+    isValid = false;
+  }
+
   if (!isValid) {
     statusMessage.textContent = errorMessages.join('. ');
     statusMessage.style.color = 'red';
     return;
   }
-  
+
+  // Record submission
+  localStorage.setItem('lastSubmission', Date.now());
+
   statusMessage.textContent = 'Enviando...';
   statusMessage.style.color = 'black';
   
   const submitBtn = e.target.querySelector('.submit-btn');
   submitBtn.disabled = true;
 
-  // Get date/time in dd/mm/yyyy HH:mm:ss
+  // Prepare timestamp
   const now = new Date();
   const timestamp = new Intl.DateTimeFormat('en-GB', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
+    day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
   }).format(now);
 
+  // Build data object
   const data = JSON.stringify({
     name,
     email,
@@ -320,7 +299,7 @@ function handleCourseFormSubmission(e) {
     signup_date: timestamp
   });
 
-  // Send to your Make webhook
+  // Send to Make.com webhook (separate from the newsletter)
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 10000);
 
@@ -356,13 +335,31 @@ function handleCourseFormSubmission(e) {
   });
 }
 
-// Finally, load your components on DOMContentLoaded
+/************************************************
+ * 5. loadComponent() - For External HTML Parts *
+ ************************************************/
+function loadComponent(selector, url) {
+  fetch(url)
+    .then(response => {
+      if (!response.ok) throw new Error(`Failed to load ${url}`);
+      return response.text();
+    })
+    .then(data => {
+      document.querySelector(selector).innerHTML = data;
+    })
+    .catch(error => console.error('Error loading component:', error));
+}
+
+/************************************************
+ * 6. DOMContentLoaded - Load Components, etc.  *
+ ************************************************/
 document.addEventListener('DOMContentLoaded', () => {
+  // Example usage of loadComponent:
   loadComponent('#header', '/components/header.html');
   loadComponent('#contact', '/components/contact.html');
   loadComponent('#footer', '/components/footer.html');
   
-  // Example usage: if you have a button that triggers the modal
+  // If you have a button with id="request-kit-btn" that triggers 'receiveYourKit'
   const kitButton = document.getElementById('request-kit-btn');
   if (kitButton) {
     kitButton.addEventListener('click', receiveYourKit);
