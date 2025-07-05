@@ -30,7 +30,7 @@
         </TextParagraph>
         
         <v-img
-          src="/src/assets/gantt.jpg"
+          :src="ganttImage"
           alt="Gantt Chart"
           class="mt-6"
           contain
@@ -98,6 +98,7 @@ import TextHeadline from '@/components/ui/typography/TextHeadline.vue';
 import TextParagraph from '@/components/ui/typography/TextParagraph.vue';
 import TextQuote from '@/components/ui/typography/TextQuote.vue';
 import CardItem from '@/components/ui/cards/CardItem.vue';
+import ganttImage from '@/assets/gantt.jpg';
 
 const props = defineProps({ themeKey: { type: String, default: 'creamHighlight' } });
 const theme = getThemeConfig(props.themeKey);

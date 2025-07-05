@@ -23,7 +23,7 @@
         <!-- Logo Section -->
         <v-col cols="auto" class="d-flex align-center">
           <img 
-            src="/src/assets/logo.png" 
+            :src="logoImage" 
             alt="Logo" 
             height="45"
             class="logo-image"
@@ -124,6 +124,7 @@ import TextHeadline from '@/components/ui/typography/TextHeadline.vue'
 import TextParagraph from '@/components/ui/typography/TextParagraph.vue'
 import CountdownTimer from '@/components/ui/CountdownTimer.vue'
 import moment from 'moment'
+import logoImage from '@/assets/logo.png'
 
 const props = defineProps({
   themeKey: { type: String, default: 'sectionDark' },
