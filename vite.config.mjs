@@ -25,6 +25,9 @@ export default defineConfig({
       styles: {
         configFile: 'src/styles/settings.scss',
       },
+      sass: {
+        api: 'modern-compiler'
+      }
     }),
     Components(),
     Fonts({
@@ -70,4 +73,16 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api']
+      },
+      sass: {
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api']
+      }
+    }
+  }
 })
