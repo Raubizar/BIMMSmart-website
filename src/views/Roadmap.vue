@@ -36,7 +36,7 @@ const heroContent = {
     mobile: 'Receba gratuitamente o guia prático para acelerar sua carreira, evitar erros comuns e conquistar oportunidades reais no universo BIM.',
     desktop: 'Receba gratuitamente o guia prático para acelerar sua carreira, evitar erros comuns e conquistar oportunidades reais no universo BIM.'
   },
-  image: '@/assets/roadmap.jpg',
+  image: '/assets/images/roadmap.jpg',
   imageAlt: 'Roadmap BIM',
   cta: 'Quero meu Roadmap BIM',
 }
