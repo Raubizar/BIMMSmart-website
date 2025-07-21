@@ -10,6 +10,7 @@
       <template v-if="mobile">
         <v-row class="align-center justify-center text-center">
           <v-col cols="12" class="pb-8">
+            <slot name="logo"></slot>
             <v-img
               v-if="content.image"
               :src="content.image"
@@ -85,6 +86,7 @@
         <v-row class="align-center" style="min-height: 75vh;">
           <v-col cols="12" md="6" class="pr-8 d-flex align-center">
             <div class="hero-content">
+              <slot name="logo"></slot>
               <TextHeadline
                 :color="theme.headlineColor"
                 size="h1"
@@ -180,7 +182,9 @@ import FormModal from '@/components/ui/FormModal.vue';
 const props = defineProps({
   themeKey: { type: String, default: 'modernGrey' },
   content: { type: Object, default: () => cursoContent.hero },
-  webhookUrl: { type: String, default: 'https://hook.eu2.make.com/w6stnvtkxe0m8lfdvaf4xacedttru76d' }
+  webhookUrl: { type: String, default: 'https://hook.eu2.make.com/w6stnvtkxe0m8lfdvaf4xacedttru76d' },
+  showLogo: { type: Boolean, default: false },
+  customTopPadding: { type: String, default: null }
 });
 
 const theme = getThemeConfig(props.themeKey);
@@ -190,6 +194,7 @@ const showModal = ref(false);
 const content = props.content || cursoContent.hero;
 
 const topPadding = computed(() => {
+  if (props.customTopPadding) return props.customTopPadding
   return mobile.value ? '190px' : '140px'
 })
 

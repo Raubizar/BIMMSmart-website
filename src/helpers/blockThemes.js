@@ -73,6 +73,20 @@ export const blockThemes = {
     accentColor: '#ffffff',
     cardBorderGradient: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 100%)',
     cardBorderWidth: '3px'
+  },
+
+  // Tema com laranja - Energia e destaque
+  orangeAccent: {
+    isDark: false,
+    backgroundColor: 'bg-white',
+    backgroundStyle: { background: 'linear-gradient(135deg, #ffffff 0%, #fafafa 100%)' },
+    headlineColor: 'text-grey-darken-4',
+    paragraphColor: 'text-grey-darken-1',
+    quoteColor: 'text-grey-darken-3',
+    buttonColor: 'grey-darken-4',
+    accentColor: '#fe5f04',
+    cardBorderGradient: 'linear-gradient(135deg, rgba(254,95,4,0.8) 0%, rgba(254,95,4,0.4) 100%)',
+    cardBorderWidth: '3px'
   }
 };
 
@@ -88,6 +102,7 @@ export const bimPalette = {
   // Cores principais
   primary: '#1a1a1a',      // Preto profissional
   secondary: '#ffffff',    // Branco puro
+  accent: '#fe5f04',       // Laranja vibrante
   
   // Tons de cinza estratégicos
   greys: {
