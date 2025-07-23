@@ -283,11 +283,11 @@ export default {
         formData.append('curso', 'BIM PV Curso 1')
         formData.append('turma', 'Turma T1-2025')
         
-        const response = await fetch('https://hook.eu2.make.com/jm5x0t2b098diless01vrc6pui8qeg8b', {
+        const response = await fetch(import.meta.env.VITE_MAKE_WEBHOOK_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'x-make-apikey': 'K-h5-i-b2MEKbtL'
+            'x-make-apikey': import.meta.env.VITE_MAKE_API_KEY
           },
           body: formData
         })

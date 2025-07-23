@@ -182,7 +182,7 @@ import FormModal from '@/components/ui/FormModal.vue';
 const props = defineProps({
   themeKey: { type: String, default: 'modernGrey' },
   content: { type: Object, default: () => cursoContent.hero },
-  webhookUrl: { type: String, default: 'https://hook.eu2.make.com/w6stnvtkxe0m8lfdvaf4xacedttru76d' },
+  webhookUrl: { type: String, default: () => import.meta.env.VITE_MAKE_WEBHOOK_URL },
   showLogo: { type: Boolean, default: false },
   customTopPadding: { type: String, default: null }
 });

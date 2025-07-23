@@ -130,7 +130,7 @@ import FormModal from '@/components/ui/FormModal.vue';
 const { mobile } = useDisplay();
 const props = defineProps({ 
   themeKey: { type: String, default: 'darkPurple' },
-  webhookUrl: { type: String, default: 'https://hook.eu2.make.com/w6stnvtkxe0m8lfdvaf4xacedttru76d' }
+  webhookUrl: { type: String, default: () => import.meta.env.VITE_MAKE_WEBHOOK_URL }
 });
 const theme = getThemeConfig(props.themeKey);
 const showModal = ref(false);

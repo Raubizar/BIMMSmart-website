@@ -48,7 +48,7 @@ import Sobre from '@/components/Sobre.vue'
 import FadeInSection from '@/components/ui/animations/FadeInSection.vue'
 
 // Webhook URL
-const WEBHOOK_URL = 'https://hook.eu2.make.com/jm5x0t2b098diless01vrc6pui8qeg8b'
+const WEBHOOK_URL = import.meta.env.VITE_MAKE_WEBHOOK_URL
 
 // Configuração da página
 const pageConfig = createPageConfig()
